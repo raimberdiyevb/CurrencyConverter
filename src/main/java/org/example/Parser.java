@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Parser {
     private Document getPage() throws IOException {
         String url = "https://www.x-rates.com/table/?from=USD&amount=1";
-        return Jsoup.parse(new URL(url),5000);
+        return Jsoup.parse(new URL(url),2000);
     }
     public ArrayList<String> getCurrencyNames() throws IOException {
         Document page = getPage();

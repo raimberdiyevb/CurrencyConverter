@@ -68,12 +68,8 @@ public class Main {
         System.out.println("*".repeat(40));
         System.out.println("You can enter either full or short name");
         System.out.println("Enter the Currency of your money: ");
-        String inputCurrency = scanner.nextLine();
-        System.out.println("Here is the list of Currencies:");
-        for (int i = 0; i < parser.getCurrencyNames().size(); i++) {
-            System.out.printf("%-24s %-24s%n",parser.getCurrencyNames().get(i),parser.getCurrencyShortNames().get(parser.getCurrencyNames().get(i)));
-        }
-        System.out.println("*".repeat(40));
+        String inputCurrency = scanner.next();
+        scanner.nextLine(); // consume the remaining newline character
         System.out.println("You can enter either full or short name");
         System.out.println("Enter the Currency you want you money convert to: ");
         String wantedCurrency = scanner.nextLine();
@@ -82,7 +78,7 @@ public class Main {
         int currencyIndex = 0;
         for (int i = 0; i < parser.getCurrencyNames().size(); i++) {
             if(Objects.equals(parser.getCurrencyNames().get(i), inputCurrency)
-                || parser.getCurrencyShortNames().get(parser.getCurrencyNames().get(i)).equals(inputCurrency)){
+                    || parser.getCurrencyShortNames().get(parser.getCurrencyNames().get(i)).equals(inputCurrency)){
                 currencyIndex = i;
             }
         }
@@ -97,6 +93,7 @@ public class Main {
 
         resultMoney = usdAmount * parser.getUsdToCurrency().get(currencyIndex);
 
-        System.out.println("You converted your " + inputMoney + " " + inputCurrency + " to " + resultMoney + " " + wantedCurrency);
+        System.out.printf("You converted your " + inputMoney + " " + inputCurrency + " to %.000d" + wantedCurrency + "%n" , resultMoney);
     }
+
 }
