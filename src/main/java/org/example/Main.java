@@ -57,7 +57,7 @@ public class Main {
             System.out.printf("%-24s %-24s %s%n" , parser.getCurrencyNames().get(i),parser.getUsdToCurrency().get(i),parser.getCurrencyToUsd().get(i));
         }
     }
-    public static void getConversionResult() throws IOException {
+    public static void getConversionResult() throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the amount of money you want to convert: ");
         double inputMoney = scanner.nextDouble();
@@ -68,13 +68,19 @@ public class Main {
         System.out.println("*".repeat(40));
         System.out.println("You can enter either full or short name");
         System.out.println("Enter the Currency of your money: ");
-        String inputCurrency = scanner.next();
-        scanner.nextLine(); // consume the remaining newline character
+        Scanner scanner1 = new Scanner(System.in);
+        String inputCurrency = scanner1.nextLine();
         System.out.println("You can enter either full or short name");
         System.out.println("Enter the Currency you want you money convert to: ");
-        String wantedCurrency = scanner.nextLine();
-        double resultMoney = 0;
-        double usdAmount = 0;
+        Scanner scanner2 = new Scanner(System.in);
+        String wantedCurrency = scanner2.nextLine();
+        String prompt = "Please, wait for evaluation!";
+        for(char c : prompt.toCharArray()){
+            System.out.print(c);
+            Thread.sleep(230);
+        }
+        double resultMoney;
+        double usdAmount;
         int currencyIndex = 0;
         for (int i = 0; i < parser.getCurrencyNames().size(); i++) {
             if(Objects.equals(parser.getCurrencyNames().get(i), inputCurrency)
@@ -93,7 +99,7 @@ public class Main {
 
         resultMoney = usdAmount * parser.getUsdToCurrency().get(currencyIndex);
 
-        System.out.printf("You converted your " + inputMoney + " " + inputCurrency + " to %.000d" + wantedCurrency + "%n" , resultMoney);
+        System.out.printf("You converted your %.4f%s into %.4f%s%n",inputMoney,inputCurrency,resultMoney,wantedCurrency);
     }
 
 }
