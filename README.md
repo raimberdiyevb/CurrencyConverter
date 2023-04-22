@@ -1,0 +1,1 @@
+Coded a currency converter application in Java using real-time exchange rates data from a web page. Implemented features like showing exchange rates and converting currency with a user-friendly interface. Utilized Java's built-in Scanner class for input and output, and utilized multi-threading to enhance the user experience.
